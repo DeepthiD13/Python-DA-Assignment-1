@@ -2,11 +2,7 @@
 
 ## Project Overview
 
-This project is **Python DA Assignment 1: Data Analysis Using NumPy and Pandas**. The assignment demonstrates fundamental data analysis operations using **NumPy** and **Pandas** in a Jupyter Notebook.
-
-The assignment covers NumPy array creation and analysis, temperature calculations, array slicing, Pandas Series operations, and Pandas DataFrame exploration and manipulation.
-
----
+This project demonstrates fundamental data analysis operations using **Python, NumPy, and Pandas** in a Jupyter Notebook. It covers array creation and manipulation, temperature calculations, Series indexing and filtering, and DataFrame exploration and modification.
 
 ## Project Information
 
@@ -17,39 +13,50 @@ The assignment covers NumPy array creation and analysis, temperature calculation
 | Programming Language | Python |
 | Libraries | NumPy, Pandas |
 | Development Environment | Jupyter Notebook |
-| Notebook File | `Python_DA_Assignment_1.ipynb` |
+| Main Project File | `Python_DA_Assignment_1.ipynb` |
+| Documentation | `README.md` |
 | Instruction File | Assignment Instructions PDF |
-
----
 
 ## Objectives
 
-The main objectives of this assignment are:
+- Create and manipulate one-dimensional and two-dimensional NumPy arrays.
+- Inspect array shape, data type, and number of elements.
+- Convert temperatures from Celsius to Fahrenheit.
+- Calculate maximum, minimum, and mean values.
+- Perform array indexing and slicing.
+- Create and manipulate Pandas Series.
+- Use `loc`, `iloc`, and Boolean filtering.
+- Create and explore Pandas DataFrames.
+- Select columns and filter rows.
+- Calculate category frequencies and regional averages.
+- Modify values and add or remove rows and columns.
 
-- To create and manipulate NumPy arrays.
-- To inspect NumPy array properties such as shape, data type, and number of elements.
-- To perform mathematical calculations using NumPy.
-- To perform array slicing and indexing.
-- To create and manipulate Pandas Series.
-- To use `loc` and `iloc` for data access.
-- To apply Boolean filtering.
-- To create and explore Pandas DataFrames.
-- To filter and group DataFrame data.
-- To calculate value counts, unique values, and regional averages.
-- To modify, add, and remove DataFrame data.
+## Setup and Library Imports
+
+The following libraries were used throughout the assignment.
+
+### Code
+
+```python
+import numpy as np
+import pandas as pd
+```
 
 ---
 
 # 1. NumPy Array Operations
 
-## 1.1 Creating a 1D NumPy Array
+## 1.1 Creating a One-Dimensional Array
 
-The first step was to create a one-dimensional NumPy array containing the Week 1 temperature values.
+A NumPy array containing the Week 1 temperature values was created.
 
 ### Code
 
 ```python
-temperatures_w1 = np.array([22.5, 25.3, 20.8, 23.4, 26.1, 24.8, 21.9])
+temperatures_w1 = np.array([
+    22.5, 25.3, 20.8, 23.4, 26.1, 24.8, 21.9
+])
+print(temperatures_w1)
 ```
 
 ### Output
@@ -57,8 +64,6 @@ temperatures_w1 = np.array([22.5, 25.3, 20.8, 23.4, 26.1, 24.8, 21.9])
 ```text
 [22.5 25.3 20.8 23.4 26.1 24.8 21.9]
 ```
-
----
 
 ## 1.2 Inspecting the Array
 
@@ -80,11 +85,9 @@ Data Type: float64
 Number of Elements: 7
 ```
 
----
+## 1.3 Celsius-to-Fahrenheit Conversion and Statistics
 
-## 1.3 Celsius to Fahrenheit Conversion and Statistics
-
-The temperatures were converted from Celsius to Fahrenheit using:
+The temperatures were converted to Fahrenheit using the formula:
 
 **Fahrenheit = (Celsius × 9/5) + 32**
 
@@ -104,19 +107,15 @@ print("Mean Temperature:", np.mean(temperatures_w1))
 ### Output
 
 ```text
-Temperatures in Fahrenheit:
-[72.5  77.54 69.44 74.12 78.98 76.64 71.42]
-
+Temperatures in Fahrenheit: [72.5  77.54 69.44 74.12 78.98 76.64 71.42]
 Maximum Temperature: 26.1
 Minimum Temperature: 20.8
 Mean Temperature: 23.542857142857144
 ```
 
----
-
 ## 1.4 Array Slicing
 
-The first three days, weekend temperatures, and middle three days were extracted.
+The first three days, the last two days representing the weekend, and the middle three days were extracted.
 
 ### Code
 
@@ -134,11 +133,9 @@ Weekend Temperatures: [24.8 21.9]
 Middle Three Days: [20.8 23.4 26.1]
 ```
 
----
+## 1.5 Creating a Two-Dimensional Temperature Array
 
-## 1.5 Creating a 2D Temperature Array
-
-A two-dimensional NumPy array containing temperatures for Week 1 and Week 2 was created.
+A two-dimensional array containing temperatures for Week 1 and Week 2 was created.
 
 ### Code
 
@@ -158,9 +155,9 @@ print(temperatures)
  [19.2 22.5 21.3 24.  23.5 22.8 20.1]]
 ```
 
----
+## 1.6 Inspecting and Extracting Data from the Two-Dimensional Array
 
-## 1.6 Inspecting and Extracting Data from the 2D Array
+The shape, data type, total number of elements, weekly temperatures, and weekend temperatures were extracted.
 
 ### Code
 
@@ -181,17 +178,10 @@ Shape: (2, 7)
 Data Type: float64
 Total Number of Elements: 14
 
-Week 1 Temperatures:
-[22.5 25.3 20.8 23.4 26.1 24.8 21.9]
-
-Week 2 Temperatures:
-[19.2 22.5 21.3 24.  23.5 22.8 20.1]
-
-Week 1 Weekend:
-[24.8 21.9]
-
-Week 2 Weekend:
-[22.8 20.1]
+Week 1 Temperatures: [22.5 25.3 20.8 23.4 26.1 24.8 21.9]
+Week 2 Temperatures: [19.2 22.5 21.3 24.  23.5 22.8 20.1]
+Week 1 Weekend: [24.8 21.9]
+Week 2 Weekend: [22.8 20.1]
 ```
 
 ---
@@ -200,7 +190,7 @@ Week 2 Weekend:
 
 ## 2.1 Creating a Pandas Series
 
-A Pandas Series was created using marks with custom rank-based indices.
+A Pandas Series was created using marks and custom rank-based indices.
 
 ### Code
 
@@ -224,11 +214,9 @@ Rank5    80
 dtype: int64
 ```
 
----
-
 ## 2.2 Accessing and Filtering Series Data
 
-Integer indexing, `loc`, `iloc`, and Boolean filtering were used.
+Integer-position indexing, label-based selection using `loc`, positional selection using `iloc`, and Boolean filtering were performed.
 
 ### Code
 
@@ -263,11 +251,9 @@ Rank2    92
 dtype: int64
 ```
 
----
-
 ## 2.3 Modifying, Removing, and Calculating CGPA
 
-Rank 1 was changed to 100, Rank 5 was removed, and CGPA was calculated by dividing the remaining marks by 10.
+The mark for Rank 1 was changed to 100, Rank 5 was removed, and CGPA was calculated by dividing the remaining marks by 10.
 
 ### Code
 
@@ -320,7 +306,7 @@ dtype: float64
 
 ## 3.1 Creating the Transactions DataFrame
 
-A transaction DataFrame containing Transaction ID, Product Category, Region, and Amount was created.
+A DataFrame containing transaction IDs, product categories, regions, and transaction amounts was created.
 
 ### Code
 
@@ -358,11 +344,9 @@ print(transactions)
 9            110     Electronics  North     400
 ```
 
----
-
 ## 3.2 DataFrame Exploration
 
-The complete DataFrame, head, tail, shape, column names, data types, and basic information were examined.
+The DataFrame, first five rows, last five rows, shape, column names, data types, and basic information were examined.
 
 ### Code
 
@@ -389,29 +373,59 @@ print("\nBasic Information:")
 transactions.info()
 ```
 
-### Key Output
+### Output
+
+**Head**
 
 ```text
-Shape:
-(10, 4)
-
-Column Names:
-Index(['TransactionID', 'ProductCategory', 'Region', 'Amount'], dtype='str')
-
-Data Types:
-TransactionID      int64
-ProductCategory      str
-Region               str
-Amount             int64
+   TransactionID ProductCategory Region  Amount
+0            101     Electronics  North     200
+1            102        Clothing  South     150
+2            103     Electronics  North     300
+3            104       Furniture   East     450
+4            105        Clothing   West     200
 ```
 
-The DataFrame contained **10 transactions and 4 columns**.
+**Tail**
 
----
+```text
+   TransactionID ProductCategory Region  Amount
+5            106     Electronics  North     250
+6            107       Furniture   East     300
+7            108        Clothing   West     180
+8            109       Furniture  South     350
+9            110     Electronics  North     400
+```
+
+**Shape**
+
+```text
+(10, 4)
+```
+
+**Column Names**
+
+```text
+Index(['TransactionID', 'ProductCategory', 'Region', 'Amount'], dtype='str')
+```
+
+**Data Types**
+
+```text
+TransactionID       int64
+ProductCategory       str
+Region                str
+Amount              int64
+dtype: object
+```
+
+**Basic Information**
+
+The DataFrame contains 10 entries and 4 columns. All four columns contain 10 non-null values.
 
 ## 3.3 Selecting Columns and Filtering Transactions
 
-The ProductCategory and Amount columns were selected. The last three columns were retrieved, and transactions from the North region with Amount greater than 200 were filtered.
+The `ProductCategory` and `Amount` columns were selected. The last three columns were extracted using both `iloc` and `loc`. Transactions from the North region with an amount greater than 200 were filtered.
 
 ### Code
 
@@ -419,8 +433,11 @@ The ProductCategory and Amount columns were selected. The last three columns wer
 print("ProductCategory and Amount:")
 print(transactions[['ProductCategory', 'Amount']])
 
-print("\nLast Three Columns:")
+print("\nLast Three Columns Using iloc:")
 print(transactions.iloc[:, -3:])
+
+print("\nLast Three Columns Using loc:")
+print(transactions.loc[:, ['ProductCategory', 'Region', 'Amount']])
 
 print("\nRegion is North and Amount is Greater than 200:")
 print(transactions[
@@ -429,10 +446,9 @@ print(transactions[
 ])
 ```
 
-### Output
+### Output: ProductCategory and Amount
 
 ```text
-ProductCategory and Amount:
   ProductCategory  Amount
 0     Electronics     200
 1        Clothing     150
@@ -444,19 +460,38 @@ ProductCategory and Amount:
 7        Clothing     180
 8       Furniture     350
 9     Electronics     400
+```
 
-Region is North and Amount is Greater than 200:
+### Output: Last Three Columns
+
+Both `iloc` and `loc` return the following columns and values.
+
+```text
+  ProductCategory Region  Amount
+0     Electronics  North     200
+1        Clothing  South     150
+2     Electronics  North     300
+3       Furniture   East     450
+4        Clothing   West     200
+5     Electronics  North     250
+6       Furniture   East     300
+7        Clothing   West     180
+8       Furniture  South     350
+9     Electronics  North     400
+```
+
+### Output: Filtered Transactions
+
+```text
    TransactionID ProductCategory Region  Amount
 2            103     Electronics  North     300
 5            106     Electronics  North     250
 9            110     Electronics  North     400
 ```
 
----
-
 ## 3.4 Category Counts, Unique Regions, and Regional Mean
 
-The frequency of each product category, unique regions, and mean transaction amount for each region were calculated.
+The frequency of each product category, unique regions, and average transaction amount for each region were calculated.
 
 ### Code
 
@@ -478,22 +513,23 @@ Value Counts for ProductCategory:
 Electronics    4
 Clothing       3
 Furniture      3
+Name: count, dtype: int64
 
 Unique Values in Region:
-['North', 'South', 'East', 'West']
+['North' 'South' 'East' 'West']
 
 Mean Amount for Each Region:
+Region
 East     375.0
 North    287.5
 South    250.0
 West     190.0
+Name: Amount, dtype: float64
 ```
-
----
 
 ## 3.5 Modifying a Transaction Amount
 
-The Amount for TransactionID 102 was changed from 150 to 165.
+The amount for TransactionID 102 was changed from 150 to 165.
 
 ### Code
 
@@ -508,17 +544,15 @@ print(transactions)
 
 ### Result
 
-TransactionID `102` was successfully updated:
+TransactionID 102 now has an amount of 165. The updated row is:
 
 ```text
-102    Clothing    South    165
+1    102    Clothing    South    165
 ```
-
----
 
 ## 3.6 Adding a Discount Column
 
-A new Discount column was created using 10% of the transaction Amount.
+A new `Discount` column was created using 10% of each transaction amount.
 
 ### Code
 
@@ -530,25 +564,22 @@ print(transactions)
 
 ### Output
 
-```text
-TransactionID  Amount  Discount
-101            200     20.0
-102            165     16.5
-103            300     30.0
-104            450     45.0
-105            200     20.0
-106            250     25.0
-107            300     30.0
-108            180     18.0
-109            350     35.0
-110            400     40.0
-```
-
----
+| TransactionID | Amount | Discount |
+|---:|---:|---:|
+| 101 | 200 | 20.0 |
+| 102 | 165 | 16.5 |
+| 103 | 300 | 30.0 |
+| 104 | 450 | 45.0 |
+| 105 | 200 | 20.0 |
+| 106 | 250 | 25.0 |
+| 107 | 300 | 30.0 |
+| 108 | 180 | 18.0 |
+| 109 | 350 | 35.0 |
+| 110 | 400 | 40.0 |
 
 ## 3.7 Removing TransactionID 109
 
-The row corresponding to TransactionID 109 was removed.
+The transaction with ID 109 was removed from the DataFrame.
 
 ### Code
 
@@ -562,13 +593,11 @@ print(transactions)
 
 ### Result
 
-TransactionID `109` was successfully removed, leaving **9 transactions**.
-
----
+TransactionID 109 was successfully removed. The DataFrame now contains **9 transactions**. The `Discount` column remains temporarily and is removed in the next step.
 
 ## 3.8 Removing the Discount Column
 
-The final step was to remove the temporary Discount column.
+The temporary `Discount` column was removed to restore the original four-column structure.
 
 ### Code
 
@@ -593,63 +622,71 @@ print(transactions)
 9            110     Electronics  North     400
 ```
 
----
-
-# Final Results
-
-The assignment successfully demonstrated:
-
-- NumPy 1D and 2D array creation.
-- NumPy array properties and slicing.
-- Celsius-to-Fahrenheit conversion.
-- Maximum, minimum, and mean calculations.
-- Pandas Series creation and custom indexing.
-- Integer position indexing using `iloc`.
-- Label-based selection using `loc`.
-- Boolean filtering.
-- Series modification and deletion.
-- CGPA calculation.
-- Pandas DataFrame creation and inspection.
-- Column selection and row filtering.
-- Product category frequency analysis.
-- Unique region identification.
-- GroupBy and mean calculations.
-- DataFrame value modification.
-- Adding and deleting DataFrame columns.
-- Removing specific DataFrame rows.
+The final DataFrame contains **9 rows and 4 columns**. TransactionID 102 has an updated amount of 165, TransactionID 109 has been removed, and the temporary `Discount` column has been deleted. The original index labels are retained.
 
 ---
 
-# Files Included
+# 4. Final Results
+
+The assignment demonstrated the following Python data analysis operations:
+
+| Section | Operations Completed |
+|---|---|
+| NumPy | 1D and 2D array creation, array properties, slicing, temperature conversion, maximum, minimum, and mean |
+| Pandas Series | Series creation, custom indexing, `loc`, `iloc`, Boolean filtering, modification, deletion, and CGPA calculation |
+| Pandas DataFrame | DataFrame creation, head, tail, shape, columns, data types, column selection, row filtering, value counts, unique values, and grouping |
+| DataFrame Modification | Updating transaction values, creating a discount column, removing a row, and deleting a column |
+
+## Key Findings
+
+- The Week 1 mean temperature was approximately **23.54°C**.
+- The two-week temperature array had a shape of `(2, 7)` and contained 14 elements.
+- After modification and deletion, the Series contained four ranks.
+- Electronics was the most frequent product category, with 4 transactions.
+- The highest regional mean transaction amount was in the East region at **375.0**.
+- The lowest regional mean transaction amount was in the West region at **190.0**.
+- The final transaction DataFrame contained 9 rows and 4 columns.
+
+---
+
+# 5. Files Included
 
 | File | Description |
 |---|---|
-| `Python_DA_Assignment_1.ipynb` | Completed Jupyter Notebook containing the Python code and outputs |
-| Assignment Instructions PDF | Original assignment instructions provided for the task |
-| `README.md` | Project documentation and summary |
+| `Python_DA_Assignment_1.ipynb` | Jupyter Notebook containing the assignment code and executed outputs |
+| Assignment Instructions PDF | Original assignment instructions |
+| `README.md` | Project overview, code examples, outputs, results, and conclusion |
+
+*The filenames above should match the files actually uploaded to the repository.*
 
 ---
 
-# Tools and Technologies
+# 6. Tools and Technologies
 
-- **Python**
-- **NumPy**
-- **Pandas**
-- **Jupyter Notebook**
-- **GitHub**
+- **Python** — programming language.
+- **NumPy** — numerical arrays and calculations.
+- **Pandas** — Series, DataFrames, filtering, and data manipulation.
+- **Jupyter Notebook** — interactive coding environment.
+- **GitHub** — project storage and documentation.
 
 ---
 
-# How to Run the Project
+# 7. How to Run the Project
 
-1. Download or clone this repository.
-2. Open `Python_DA_Assignment_1.ipynb` using Jupyter Notebook or JupyterLab.
+1. Download or clone the repository.
+2. Open `Python_DA_Assignment_1.ipynb` in Jupyter Notebook or JupyterLab.
 3. Make sure Python is installed.
-4. Make sure NumPy and Pandas are installed.
+4. Install the required libraries if they are not already installed.
 5. Run the notebook cells in sequence.
-6. Review the displayed outputs for each assignment section.
+6. Review the outputs under each code cell.
 
-Required libraries:
+### Install Required Libraries
+
+```bash
+pip install numpy pandas jupyter
+```
+
+### Import the Libraries
 
 ```python
 import numpy as np
@@ -658,10 +695,16 @@ import pandas as pd
 
 ---
 
-# Conclusion
+# 8. Conclusion
 
 This assignment provided practical experience in using **NumPy and Pandas for data analysis in Python**.
 
-The NumPy section demonstrated array creation, inspection, mathematical calculations, temperature conversion, indexing, and slicing. The Pandas Series section demonstrated custom indexing, `loc`, `iloc`, Boolean filtering, modification, deletion, and CGPA calculation. The Pandas DataFrame section demonstrated data creation, exploration, filtering, aggregation, grouping, updating values, adding columns, and removing rows and columns.
+The NumPy section covered array creation, array properties, Celsius-to-Fahrenheit conversion, statistical calculations, indexing, and slicing. The Pandas Series section covered custom indices, positional and label-based access, Boolean filtering, data modification, deletion, and CGPA calculation. The Pandas DataFrame section covered data creation, exploration, column selection, conditional filtering, category counts, unique values, regional averages, and data modification.
 
-Overall, the assignment successfully strengthened fundamental Python data analysis skills and provided hands-on experience working with structured data using **NumPy and Pandas** in a Jupyter Notebook environment.
+Overall, the assignment strengthened fundamental Python data analysis skills and demonstrated how NumPy and Pandas can be used to work with numerical arrays and structured data.
+
+---
+
+**Project:** Python DA Assignment 1 — Data Analysis Using NumPy and Pandas  
+**Environment:** Jupyter Notebook  
+**Libraries:** NumPy and Pandas
